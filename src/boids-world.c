@@ -84,7 +84,7 @@ bool boids_world_init(void)
     
     player_accel = 0.3f;
     player_decel = -0.8f;
-    player_max_speed = 1.0f;
+    player_max_speed = 0.5f;
     player_min_speed = 0.001f;
 
     player_pitch = 0.0f;

@@ -77,7 +77,7 @@ internal const u32 WRM_SHADER_ATTRIB_COL_LOC = 1;
 internal const u32 WRM_SHADER_ATTRIB_UV_LOC = 2;
 // internal const u32 WRM_SHADER_ATTRIB_NORM_LOC = 3; // unused (yet)
 
-internal const char *WRM_SHADER_DEFAULT_COL_V_TEXT = 
+internal const char *WRM_SHADER_DEFAULT_COL_V_TEXT = {
 "#version 330 core\n"
 "layout (location = 0) in vec3 v_pos;\n" // positions are location 0
 "layout (location = 1) in vec4 v_col;\n" // colors are location 1
@@ -89,19 +89,21 @@ internal const char *WRM_SHADER_DEFAULT_COL_V_TEXT =
 "{\n"
 "    gl_Position = persp * view * model * vec4(v_pos, 1.0);\n"
 "    col = v_col;\n"
-"}\n";
-internal const char *WRM_SHADER_DEFAULT_COL_F_TEXT = 
+"}\n"
+};
+internal const char *WRM_SHADER_DEFAULT_COL_F_TEXT = {
 "#version 330 core\n"
 "in vec4 col;\n"
 "out vec4 FragColor;\n"
 "void main()\n"
 "{\n"
 "    FragColor = col;\n"
-"}\n";
+"}\n"
+};
 
 // texture
 
-internal const char *WRM_SHADER_DEFAULT_TEX_V_TEXT = 
+internal const char *WRM_SHADER_DEFAULT_TEX_V_TEXT = {
 "#version 330 core\n"
 "layout (location = 0) in vec3 v_pos;\n" // positions are location 0
 "layout (location = 2) in vec2 v_uv;\n"  // uvs are location 2
@@ -113,8 +115,9 @@ internal const char *WRM_SHADER_DEFAULT_TEX_V_TEXT =
 "{\n"
 "    gl_Position = persp * view * model * vec4(v_pos, 1.0);\n" 
 "    uv = v_uv;\n"
-"}\n";
-internal const char *WRM_SHADER_DEFAULT_TEX_F_TEXT = 
+"}\n"
+};
+internal const char *WRM_SHADER_DEFAULT_TEX_F_TEXT = {
 "#version 330 core\n"
 "in vec2 uv;\n"
 "uniform sampler2D tex;\n"
@@ -122,10 +125,11 @@ internal const char *WRM_SHADER_DEFAULT_TEX_F_TEXT =
 "void main()\n"
 "{\n"
 "    FragColor = texture(tex, uv);\n"
-"}\n";
+"}\n"
+};
 
 // both
-internal const char *WRM_SHADER_DEFAULT_BOTH_V_TEXT = 
+internal const char *WRM_SHADER_DEFAULT_BOTH_V_TEXT = {
 "#version 330 core\n"
 "layout (location = 0) in vec3 v_pos;\n" // positions are location 0
 "layout (location = 1) in vec4 v_col;\n"
@@ -140,8 +144,9 @@ internal const char *WRM_SHADER_DEFAULT_BOTH_V_TEXT =
 "    gl_Position = persp * view * model * vec4(v_pos, 1.0);\n"
 "    col = v_col;\n" 
 "    uv = v_uv;\n"
-"}\n";
-internal const char *WRM_SHADER_DEFAULT_BOTH_F_TEXT = 
+"}\n"
+};
+internal const char *WRM_SHADER_DEFAULT_BOTH_F_TEXT = {
 "#version 330 core\n"
 "in vec4 col;\n"
 "in vec2 uv;\n"
@@ -150,7 +155,8 @@ internal const char *WRM_SHADER_DEFAULT_BOTH_F_TEXT =
 "void main()\n"
 "{\n"
 "    FragColor = texture(tex, uv) * col;\n"
-"}\n";
+"}\n"
+};
 
 // default meshes
 wrm_Mesh_Data default_color_mesh_data = {
@@ -190,16 +196,82 @@ wrm_Mesh_Data default_color_mesh_data = {
 
 wrm_Mesh_Data default_texture_mesh_data = {
     .positions = (float[]) {
+        -0.5f,  0.5f,  0.5f,
+         0.5f,  0.5f,  0.5f,
+        -0.5f, -0.5f,  0.5f,
+         0.5f, -0.5f,  0.5f,
         
+        -0.5f,  0.5f,  0.5f,
+        -0.5f,  0.5f, -0.5f,
+         0.5f,  0.5f,  0.5f,
+         0.5f,  0.5f, -0.5f,
+
+         0.5f,  0.5f,  0.5f,
+         0.5f,  0.5f, -0.5f,
+         0.5f, -0.5f,  0.5f,
+         0.5f, -0.5f, -0.5f,
+
+         0.5f,  0.5f, -0.5f,
+        -0.5f,  0.5f, -0.5f,
+         0.5f, -0.5f, -0.5f,
+        -0.5f, -0.5f, -0.5f,
+
+        -0.5f,  0.5f, -0.5f,
+        -0.5f,  0.5f,  0.5f,
+        -0.5f, -0.5f, -0.5f,
+        -0.5f, -0.5f,  0.5f,
+
+        -0.5f, -0.5f,  0.5f,
+         0.5f, -0.5f,  0.5f,
+        -0.5f, -0.5f, -0.5f,
+         0.5f, -0.5f, -0.5f,
     },
     .colors = (float[]) {
+        0.0f, 1.0f, 1.0f, 1.0f,
+        1.0f, 1.0f, 1.0f, 1.0f,
+        0.0f, 0.0f, 1.0f, 1.0f,
+        1.0f, 0.0f, 1.0f, 1.0f,
+        
+        0.0f, 1.0f, 1.0f, 1.0f,
+        0.0f, 1.0f, 0.0f, 1.0f,
+        1.0f, 1.0f, 1.0f, 1.0f,
+        1.0f, 1.0f, 0.0f, 1.0f,
 
+        1.0f, 1.0f, 1.0f, 1.0f,
+        1.0f, 1.0f, 0.0f, 1.0f,
+        1.0f, 0.0f, 1.0f, 1.0f,
+        1.0f, 0.0f, 0.0f, 1.0f,
+
+        1.0f, 1.0f, 0.0f, 1.0f,
+        0.0f, 1.0f, 0.0f, 1.0f,
+        1.0f, 0.0f, 0.0f, 1.0f,
+        0.0f, 0.0f, 0.0f, 1.0f,
+
+        0.0f, 1.0f, 0.0f, 1.0f,
+        0.0f, 1.0f, 1.0f, 1.0f,
+        0.0f, 0.0f, 0.0f, 1.0f,
+        0.0f, 0.0f, 1.0f, 1.0f,
+
+        0.0f, 0.0f, 1.0f, 1.0f,
+        1.0f, 0.0f, 1.0f, 1.0f,
+        0.0f, 0.0f, 0.0f, 1.0f,
+        1.0f, 0.0f, 0.0f, 1.0f,
     },
     .uvs = (float[]) {
-
+        0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+        0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+        0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+        0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+        0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+        0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
     },
     .indices = (u32[]) {
-
+        0, 1, 3, 0, 3, 2, 
+        4, 5, 7, 4, 7, 6, 
+        8, 9, 11, 8, 11, 10,
+        12, 13, 15, 12, 15, 14,
+        16, 17, 19, 16, 19, 18,
+        20, 21, 23, 20, 23, 22,
     },
     .cw = true,
     .tri_cnt = 12,
@@ -916,7 +988,7 @@ internal void wrm_render_createErrorTexture(void)
 
 internal void wrm_render_createTestModel(void)
 {
-    wrm_Option_Handle mesh = wrm_render_createMesh(&default_color_mesh_data);
+    wrm_Option_Handle mesh = wrm_render_createMesh(&default_texture_mesh_data);
     if(!mesh.exists) {
         if(wrm_render_settings.errors) fprintf(stdout, "ERROR: Render: failed to create test triangle mesh\n");
         return;
