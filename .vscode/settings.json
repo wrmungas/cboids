@@ -1,6 +1,0 @@
-{
-    "files.associations": {
-        "wrm-common.h": "c",
-        "sdl.h": "c"
-    }
-}
